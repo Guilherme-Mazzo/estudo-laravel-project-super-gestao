@@ -45,3 +45,9 @@ Route::get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato
 // Route::get('/contato', function () {
 //     return 'contato ';
 // });
+
+
+// /{} - é um parâmetro que será passado na URL. No caso, o parâmetro será passado na URL quando o usuário acessar a rota /
+Route::get('/contato/{nome}/{categoria}/{assunto}/{mensagem}', function(string $nome, string $categoria, string $assunto, string $mensagem) {
+    echo 'Estamos aqui: '.$nome.' - '.$categoria.' - '.$assunto.' - '.$mensagem;
+});
