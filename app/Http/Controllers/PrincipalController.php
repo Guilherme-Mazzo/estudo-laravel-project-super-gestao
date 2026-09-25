@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class PrincipalController extends Controller
 {
     public function principal() {
-        echo '0la seja bem vindo';
+        return view('site.principal');
     }
 }
 
