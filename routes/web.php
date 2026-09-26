@@ -48,6 +48,8 @@ Route::get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato
 
 
 // /{} - é um parâmetro que será passado na URL. No caso, o parâmetro será passado na URL quando o usuário acessar a rota /
-Route::get('/contato/{nome}/{categoria}/{assunto}/{mensagem}', function(string $nome, string $categoria, string $assunto, string $mensagem) {
-    echo 'Estamos aqui: '.$nome.' - '.$categoria.' - '.$assunto.' - '.$mensagem;
-});
+Route::get(
+    '/contato/{nome}/{categoria}/{assunto}/{mensagem?}', // ? - indica que o parâmetro é opcional. No caso, o parâmetro mensagem é opcional, ou seja, o usuário pode acessar a rota sem passar o parâmetro mensagem na URL.
+    function(string $nome, string $categoria, string $assunto, string $mensagem = 'mensagem não informada') {  // null - valor padrão caso nao seja passado o parametro na url.
+        echo "Estamos aqui para ajudar {$nome}, sua categoria é {$categoria}, seu assunto é {$assunto} e sua mensagem é {$mensagem}";
+    });
