@@ -48,8 +48,24 @@ Route::get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato
 
 
 // /{} - é um parâmetro que será passado na URL. No caso, o parâmetro será passado na URL quando o usuário acessar a rota /
+// parametros opcionais precisam ser sequenciados sempre da esquerda para a direita, para que o larael consiga identificar e sequenciar melhor
+// Route::get(
+//     '/contato/{nome}/{categoria}/{assunto}/{mensagem?}', // ? - indica que o parâmetro é opcional. No caso, o parâmetro mensagem é opcional, ou seja, o usuário pode acessar a rota sem passar o parâmetro mensagem na URL.
+//     function(string $nome, string $categoria, string $assunto, string $mensagem = 'mensagem não informada') {  // null - valor padrão caso nao seja passado o parametro na url.
+//         echo "Estamos aqui para ajudar {$nome}, sua categoria é {$categoria}, seu assunto é {$assunto} e sua mensagem é {$mensagem}";
+//     });
+
+
 Route::get(
-    '/contato/{nome}/{categoria}/{assunto}/{mensagem?}', // ? - indica que o parâmetro é opcional. No caso, o parâmetro mensagem é opcional, ou seja, o usuário pode acessar a rota sem passar o parâmetro mensagem na URL.
-    function(string $nome, string $categoria, string $assunto, string $mensagem = 'mensagem não informada') {  // null - valor padrão caso nao seja passado o parametro na url.
-        echo "Estamos aqui para ajudar {$nome}, sua categoria é {$categoria}, seu assunto é {$assunto} e sua mensagem é {$mensagem}";
-    });
+    '/contato/{nome}/{categoria_id}', 
+    function(
+        string $nome = 'Desconhecido',
+        int $categoria_id = 1 // 1 - informação
+    ) {  // null - valor padrão caso nao seja passado o parametro na url.
+        echo "Estamos aqui para ajudar {$nome}, sua categoria é {$categoria_id}";
+
+    })->where('categoria_id', '[0-9]+')->where ('nome', '[A-Za-z]+');//o parametro nome precisa ter caracteres de A a Z e de a a z, ou seja, não pode ter números nem caracteres especiais.
+// Expressões regulares nas rotas permitem definir regras para os parâmetros da URL,
+// determinando quais tipos de valores podem ser recebidos.
+// Neste exemplo, o parâmetro {id} aceita somente números.
+// O where() é usado para aplicar essa regra ao parâmetro da rota.
