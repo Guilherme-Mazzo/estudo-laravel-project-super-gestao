@@ -42,6 +42,13 @@ Route::get('/sobre-nos', [\App\Http\Controllers\SobreNosController::class, 'sobr
 
 Route::get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato']);
 
+Route::get('/login', function (){ return 'login'; });
+Route::get('/clientes', function (){ return 'clientes'; });
+Route::get('/fornecedores', function (){ return 'fornecedores'; });
+Route::get('/produtos', function (){ return 'produtos'; });
+
+
+
 // Route::get('/contato', function () {
 //     return 'contato ';
 // });
@@ -56,16 +63,19 @@ Route::get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato
 //     });
 
 
-Route::get(
-    '/contato/{nome}/{categoria_id}', 
-    function(
-        string $nome = 'Desconhecido',
-        int $categoria_id = 1 // 1 - informação
-    ) {  // null - valor padrão caso nao seja passado o parametro na url.
-        echo "Estamos aqui para ajudar {$nome}, sua categoria é {$categoria_id}";
+// Route::get(
+//     '/contato/{nome}/{categoria_id}', 
+//     function(
+//         string $nome = 'Desconhecido',
+//         int $categoria_id = 1 // 1 - informação
+//     ) {  // null - valor padrão caso nao seja passado o parametro na url.
+//         echo "Estamos aqui para ajudar {$nome}, sua categoria é {$categoria_id}";
+//     })->where('categoria_id', '[0-9]+')->where ('nome', '[A-Za-z]+');    //o parametro nome precisa ter caracteres de A a Z e de a a z, ou seja, não pode ter números nem caracteres especiais.
 
-    })->where('categoria_id', '[0-9]+')->where ('nome', '[A-Za-z]+');//o parametro nome precisa ter caracteres de A a Z e de a a z, ou seja, não pode ter números nem caracteres especiais.
 // Expressões regulares nas rotas permitem definir regras para os parâmetros da URL,
 // determinando quais tipos de valores podem ser recebidos.
 // Neste exemplo, o parâmetro {id} aceita somente números.
 // O where() é usado para aplicar essa regra ao parâmetro da rota.
+
+
+// sail artisan route:list - exibe uma lista de todas as rotas definidas na aplicação, incluindo o método HTTP, a URL, o nome da rota, o controlador e o middleware associado a cada rota.
