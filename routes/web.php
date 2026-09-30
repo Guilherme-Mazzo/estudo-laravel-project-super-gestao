@@ -39,14 +39,15 @@ Route:: get('/',[\App\Http\Controllers\PrincipalController::class,'principal']);
 // });
 
 Route::get('/sobre-nos', [\App\Http\Controllers\SobreNosController::class, 'sobreNos']);
-
 Route::get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato']);
 
-Route::get('/login', function (){ return 'login'; });
-Route::get('/clientes', function (){ return 'clientes'; });
-Route::get('/fornecedores', function (){ return 'fornecedores'; });
-Route::get('/produtos', function (){ return 'produtos'; });
-
+/app
+Route::prefix('/app')->group(function() {
+    Route::get('/login', function (){ return 'login'; });
+    Route::get('/clientes', function (){ return 'clientes'; });
+    Route::get('/fornecedores', function (){ return 'fornecedores'; });
+    Route::get('/produtos', function (){ return 'produtos'; });
+});
 
 
 // Route::get('/contato', function () {
