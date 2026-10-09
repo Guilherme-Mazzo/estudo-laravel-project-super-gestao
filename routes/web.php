@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 // o @ ele chama o método principal do controller PrincipalController. No caso, o método principal do controller PrincipalController.
 // '/' nao passei nada pois é a rota principal do site. No caso, a rota principal do site é a rota que será acessada quando o usuário acessar o site sem passar nenhum parâmetro na URL. 
 // No caso, a rota principal do site é a rota que será acessada quando o usuário acessar o site sem passar nenhum parâmetro na URL.
-Route:: get('/',[\App\Http\Controllers\PrincipalController::class,'principal']);
+Route:: get('/',[\App\Http\Controllers\PrincipalController::class,'principal'])->name('site.index'); // name - ele é usado para dar um nome para a rota. No exemplo acima, a rota principal do site foi nomeada como site.index. O nome da rota é usado para gerar URLs e redirecionamentos de forma mais fácil e legível.
 
 // Route::get('/', function () {
 //     return '0la seja bem vindo ';
@@ -38,15 +38,14 @@ Route:: get('/',[\App\Http\Controllers\PrincipalController::class,'principal']);
 //     return 'sobre-nos ';
 // });
 
-Route::get('/sobre-nos', [\App\Http\Controllers\SobreNosController::class, 'sobreNos']);
-Route::get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato']);
+Route::get('/sobre-nos', [\App\Http\Controllers\SobreNosController::class, 'sobreNos'])->name('site.sobrenos');
+Route::get('/contato', [\App\Http\Controllers\ContatoController::class, 'contato'])->name('site.contato');
+Route::get('/login', [\App\Http\Controllers\LoginController::class, 'login'])->name('site.login');
 
-/app
 Route::prefix('/app')->group(function() {
-    Route::get('/login', function (){ return 'login'; });
-    Route::get('/clientes', function (){ return 'clientes'; });
-    Route::get('/fornecedores', function (){ return 'fornecedores'; });
-    Route::get('/produtos', function (){ return 'produtos'; });
+    Route::get('/clientes', function (){ return 'clientes'; })->name('app.clientes');
+    Route::get('/fornecedores', function (){ return 'fornecedores'; })->name('app.fornecedores');
+    Route::get('/produtos', function (){ return 'produtos'; })->name('app.produtos');
 });
 
 
