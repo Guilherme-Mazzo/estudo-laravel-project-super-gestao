@@ -48,6 +48,29 @@ Route::prefix('/app')->group(function() {
     Route::get('/produtos', function (){ return 'produtos'; })->name('app.produtos');
 });
 
+# Redirecionamento de rotas
+# redirect - ele é usado para redirecionar uma rota para outra. No exemplo acima, a rota /rota1 foi redirecionada para a rota /rota2. Ou seja, 
+#quando o usuário acessar a rota /rota1, ele será redirecionado para a rota /rota2.
+# existem 3 formas de fazer o redirecionamento de rotas no laravel, sendo elas: redirect()->route('nome_da_rota'), que fazemos depois do Route, 
+# redirect('/rota1', '/rota2') e Route::redirect('/rota1', '/rota2'), que fazemos na função callback, ou pelos controllers(que é o mais comum).
+Route::get('/rota1', function () {
+    echo 'rota1';
+})->name('site.rota1');
+
+Route::get('/rota2', function () {
+    return redirect()->Route('site.rota1');  // redirect()->route('site.rota1') - ele é usado para redirecionar uma rota para outra. No exemplo acima, a rota /rota2 foi redirecionada para a rota /rota1. Ou seja, quando o usuário acessar a rota /rota2, ele será redirecionado para a rota /rota1.
+})->name('site.rota2');
+
+
+// Rota de contingencia - ela é usada para tratar rotas que não existem. No exemplo acima, quando o usuário acessar uma rota que não existe, 
+// ele será redirecionado para a rota principal do site. Ou seja, quando o usuário acessar uma rota que não existe, ele será redirecionado para a rota principal do site.
+Route::fallback(function() {
+    echo 'A rota acessada não existe. <a href="'.route('site.index').'">Clique aqui</a> para ir para a página inicial.';
+});
+
+
+//Route::redirect('/rota2', '/rota1'); // redirect('/rota2', '/rota1') - ele é usado para redirecionar uma rota para outra. No exemplo acima, a rota /rota2 foi redirecionada para a rota /rota1. Ou seja, quando o usuário acessar a rota /rota2, ele será redirecionado para a rota /rota1.
+
 
 // Route::get('/contato', function () {
 //     return 'contato ';
