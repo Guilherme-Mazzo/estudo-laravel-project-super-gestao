@@ -62,7 +62,8 @@ Route::prefix('/app')->group(function() {
 // })->name('site.rota2');
 
 
-
+// [TesteController::class, 'teste']) - esta parte esta chamando o método teste do controller TesteController. 
+// No caso, o método teste do controller TesteController será executado quando a rota /teste/{p1}/{p2} for acessada. 
 Route::get('/teste/{p1}/{p2}', [TesteController::class, 'teste'])
     ->name('teste');
 
