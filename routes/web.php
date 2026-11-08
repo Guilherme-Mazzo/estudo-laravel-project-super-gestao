@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TesteController;
+use App\Http\Controllers\FornecedorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +46,7 @@ Route::get('/login', [\App\Http\Controllers\LoginController::class, 'login'])->n
 
 Route::prefix('/app')->group(function() {
     Route::get('/clientes', function (){ return 'clientes'; })->name('app.clientes');
-    Route::get('/fornecedores', function (){ return 'fornecedores'; })->name('app.fornecedores');
+    Route::get('/fornecedores', [FornecedorController::class, 'index'])->name('app.fornecedores');
     Route::get('/produtos', function (){ return 'produtos'; })->name('app.produtos');
 });
 
